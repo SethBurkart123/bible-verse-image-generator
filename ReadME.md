@@ -1,8 +1,8 @@
 # Bible Instagram Post Generator
 
 <p align="center">
-  <img src="sample_image_1.jpg" width="45%" alt="Sample Image 1">
-  <img src="sample_image_2.jpg" width="45%" alt="Sample Image 2">
+  <img src="1.webp" width="45%" alt="Sample Image 1">
+  <img src="2.webp" width="45%" alt="Sample Image 2">
 </p>
 
 ## Introduction
