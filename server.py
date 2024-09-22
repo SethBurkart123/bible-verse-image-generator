@@ -18,7 +18,14 @@ output_dir = "output"
 processed_dir = "processed_backgrounds"
 
 current_verse_index = 0
-background_images = os.listdir(background_dir)
+
+# Add this function to check if a file is an image
+def is_image_file(filename):
+    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}
+    return os.path.splitext(filename.lower())[1] in image_extensions
+
+# Update the background_images list to only include image files
+background_images = [f for f in os.listdir(background_dir) if is_image_file(f)]
 
 os.makedirs(output_dir, exist_ok=True)
 os.makedirs(processed_dir, exist_ok=True)
@@ -33,11 +40,11 @@ def next_verse():
     # Check if we've run out of backgrounds
     if len(background_images) == 0:
         # Move all processed backgrounds back to the background_dir
-        processed_images = os.listdir(processed_dir)
+        processed_images = [f for f in os.listdir(processed_dir) if is_image_file(f)]
         for image in processed_images:
             os.rename(os.path.join(processed_dir, image), os.path.join(background_dir, image))
         # Update the list of available background images
-        background_images = os.listdir(background_dir)
+        background_images = [f for f in os.listdir(background_dir) if is_image_file(f)]
 
     verse = verses[current_verse_index]
     background_url = f"/backgrounds/{background_images[current_verse_index % len(background_images)]}"

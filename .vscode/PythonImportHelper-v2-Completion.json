@@ -257,11 +257,20 @@
         "documentation": {}
     },
     {
+        "label": "is_image_file",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def is_image_file(filename):\n    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}\n    return os.path.splitext(filename.lower())[1] in image_extensions\n# Update the background_images list to only include image files\nbackground_images = [f for f in os.listdir(background_dir) if is_image_file(f)]\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
         "label": "next_verse",
         "kind": 2,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "def next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})\n    # Check if we've run out of backgrounds\n    if len(background_images) == 0:\n        # Move all processed backgrounds back to the background_dir\n        processed_images = os.listdir(processed_dir)\n        for image in processed_images:\n            os.rename(os.path.join(processed_dir, image), os.path.join(background_dir, image))",
+        "peekOfCode": "def next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})\n    # Check if we've run out of backgrounds\n    if len(background_images) == 0:\n        # Move all processed backgrounds back to the background_dir\n        processed_images = [f for f in os.listdir(processed_dir) if is_image_file(f)]\n        for image in processed_images:\n            os.rename(os.path.join(processed_dir, image), os.path.join(background_dir, image))",
         "detail": "server",
         "documentation": {}
     },
@@ -315,7 +324,7 @@
         "kind": 5,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "app = Flask(__name__, static_folder='frontend')\nwith open(\"verses/verses.json\", \"r\") as f:\n    verses = json.load(f)\nbackground_dir = \"backgrounds\"\noutput_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)",
+        "peekOfCode": "app = Flask(__name__, static_folder='frontend')\nwith open(\"verses/verses.json\", \"r\") as f:\n    verses = json.load(f)\nbackground_dir = \"backgrounds\"\noutput_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\n# Add this function to check if a file is an image\ndef is_image_file(filename):\n    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}",
         "detail": "server",
         "documentation": {}
     },
@@ -324,7 +333,7 @@
         "kind": 5,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "background_dir = \"backgrounds\"\noutput_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images",
+        "peekOfCode": "background_dir = \"backgrounds\"\noutput_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\n# Add this function to check if a file is an image\ndef is_image_file(filename):\n    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}\n    return os.path.splitext(filename.lower())[1] in image_extensions\n# Update the background_images list to only include image files\nbackground_images = [f for f in os.listdir(background_dir) if is_image_file(f)]",
         "detail": "server",
         "documentation": {}
     },
@@ -333,7 +342,7 @@
         "kind": 5,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "output_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):",
+        "peekOfCode": "output_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\n# Add this function to check if a file is an image\ndef is_image_file(filename):\n    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}\n    return os.path.splitext(filename.lower())[1] in image_extensions\n# Update the background_images list to only include image files\nbackground_images = [f for f in os.listdir(background_dir) if is_image_file(f)]\nos.makedirs(output_dir, exist_ok=True)",
         "detail": "server",
         "documentation": {}
     },
@@ -342,7 +351,7 @@
         "kind": 5,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "processed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})",
+        "peekOfCode": "processed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\n# Add this function to check if a file is an image\ndef is_image_file(filename):\n    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}\n    return os.path.splitext(filename.lower())[1] in image_extensions\n# Update the background_images list to only include image files\nbackground_images = [f for f in os.listdir(background_dir) if is_image_file(f)]\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)",
         "detail": "server",
         "documentation": {}
     },
@@ -351,7 +360,7 @@
         "kind": 5,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "current_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})\n    # Check if we've run out of backgrounds",
+        "peekOfCode": "current_verse_index = 0\n# Add this function to check if a file is an image\ndef is_image_file(filename):\n    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}\n    return os.path.splitext(filename.lower())[1] in image_extensions\n# Update the background_images list to only include image files\nbackground_images = [f for f in os.listdir(background_dir) if is_image_file(f)]\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')",
         "detail": "server",
         "documentation": {}
     },
@@ -360,7 +369,7 @@
         "kind": 5,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "background_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})\n    # Check if we've run out of backgrounds\n    if len(background_images) == 0:",
+        "peekOfCode": "background_images = [f for f in os.listdir(background_dir) if is_image_file(f)]\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})\n    # Check if we've run out of backgrounds\n    if len(background_images) == 0:",
         "detail": "server",
         "documentation": {}
     }

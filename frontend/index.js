@@ -263,11 +263,19 @@ async function loadNextVerse() {
   return true;
 }
 
+let renderRequested = false;
+
 function renderScene() {
-  if (isRendering) return;
-  isRendering = true;
-  renderer.render(scene, camera);
-  isRendering = false;
+  if (!renderRequested) {
+    renderRequested = true;
+    requestAnimationFrame(() => {
+      if (renderer && scene && camera) {
+        renderer.render(scene, camera);
+      }
+      renderRequested = false;
+      document.dispatchEvent(new Event('renderComplete'));
+    });
+  }
 }
 
 async function exportImage() {
@@ -351,9 +359,11 @@ async function processAllVerses() {
   progressContainer.style.display = 'block';
 
   while (await loadNextVerse()) {
-    // Wait for a moment to ensure the image is rendered
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    renderScene();
+    // Wait for the render to complete
+    await new Promise(resolve => {
+      renderScene();
+      document.addEventListener('renderComplete', resolve, { once: true });
+    });
     await exportImage();
   }
 
