@@ -158,6 +158,15 @@
         "documentation": {}
     },
     {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
         "label": "get_verse_by_reference",
         "kind": 2,
         "importPath": "verses.extract",
@@ -279,7 +288,7 @@
         "kind": 2,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "def serve_frontend(path):\n    if path and os.path.exists(os.path.join(app.static_folder, path)):\n        return send_from_directory(app.static_folder, path)\n    else:\n        return send_from_directory(app.static_folder, 'index.html')\n@app.route('/api/google-fonts-key')\ndef get_google_fonts_key():\n    return jsonify({\"key\": os.getenv('GOOGLE_FONTS_API_KEY')})\nif __name__ == '__main__':\n    run_simple('localhost', 8000, app)",
+        "peekOfCode": "def serve_frontend(path):\n    if path and os.path.exists(os.path.join(app.static_folder, path)):\n        return send_from_directory(app.static_folder, path)\n    else:\n        return send_from_directory(app.static_folder, 'index.html')\n@app.route('/api/google-fonts-key')\ndef get_google_fonts_key():\n    return jsonify({\"key\": os.getenv('GOOGLE_FONTS_API_KEY')})\n@app.route('/random-background')\ndef random_background():",
         "detail": "server",
         "documentation": {}
     },
@@ -288,7 +297,16 @@
         "kind": 2,
         "importPath": "server",
         "description": "server",
-        "peekOfCode": "def get_google_fonts_key():\n    return jsonify({\"key\": os.getenv('GOOGLE_FONTS_API_KEY')})\nif __name__ == '__main__':\n    run_simple('localhost', 8000, app)",
+        "peekOfCode": "def get_google_fonts_key():\n    return jsonify({\"key\": os.getenv('GOOGLE_FONTS_API_KEY')})\n@app.route('/random-background')\ndef random_background():\n    if background_images:\n        random_image = random.choice(background_images)\n        return jsonify({\"backgroundUrl\": f\"/backgrounds/{random_image}\"})\n    else:\n        return jsonify({\"error\": \"No background images available\"}), 404\nif __name__ == '__main__':",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "random_background",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def random_background():\n    if background_images:\n        random_image = random.choice(background_images)\n        return jsonify({\"backgroundUrl\": f\"/backgrounds/{random_image}\"})\n    else:\n        return jsonify({\"error\": \"No background images available\"}), 404\nif __name__ == '__main__':\n    run_simple('localhost', 8000, app)",
         "detail": "server",
         "documentation": {}
     },

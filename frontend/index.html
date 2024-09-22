@@ -47,6 +47,20 @@
     <label for="referenceFontSize">Reference Font Size:</label>
     <input type="range" id="referenceFontSize" min="8" max="40" step="1" value="18">
 
+    <label for="blendMode">Blend Mode:</label>
+    <select id="blendMode">
+      <option value="normal">Normal</option>
+      <option value="lighten">Lighten</option>
+      <option value="screen">Screen</option>
+      <option value="colorDodge">Color Dodge</option>
+      <option value="linearDodge">Linear Dodge</option>
+      <option value="overlay">Overlay</option>
+      <option value="softLight">Soft Light</option>
+      <option value="hardLight">Hard Light</option>
+    </select>
+
+    <button id="randomImageButton">Random Image</button>
+
     <div id="progressContainer" style="display: none;">
       <progress id="progressBar" value="0" max="100"></progress>
       <span id="progressText">0%</span>

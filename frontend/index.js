@@ -72,6 +72,7 @@ function saveSettings() {
   localStorage.setItem('referenceFont', document.getElementById('referenceFont').value);
   localStorage.setItem('verseFontSize', document.getElementById('verseFontSize').value);
   localStorage.setItem('referenceFontSize', document.getElementById('referenceFontSize').value);
+  localStorage.setItem('blendMode', document.getElementById('blendMode').value);
 }
 
 function loadSettings() {
@@ -84,6 +85,7 @@ function loadSettings() {
   document.getElementById('brightness').value = localStorage.getItem('brightness') || '1';
   document.getElementById('verseFontSize').value = localStorage.getItem('verseFontSize') || '40';
   document.getElementById('referenceFontSize').value = localStorage.getItem('referenceFontSize') || '18';
+  document.getElementById('blendMode').value = localStorage.getItem('blendMode') || 'normal';
 
   // Load saved fonts from localStorage
   const savedVerseFont = localStorage.getItem('verseFont') || 'Noto Serif';
@@ -127,6 +129,13 @@ document.getElementById('referenceFontSize').addEventListener('input', function(
   document.querySelector('.reference').style.fontSize = `${this.value}px`;
   saveSettings();
 });
+document.getElementById('blendMode').addEventListener('change', function() {
+  if (material) {
+    material.uniforms.blendMode.value = getBlendModeValue(this.value);
+    renderScene();
+  }
+  saveSettings();
+});
 
 loadSettings();
 
@@ -161,7 +170,8 @@ function createMaterial(texture) {
       grainIntensity: { value: parseFloat(localStorage.getItem('grainIntensity')) || 0.1 },
       grainSize: { value: parseFloat(localStorage.getItem('grainSize')) || 1.0 },
       brightness: { value: parseFloat(localStorage.getItem('brightness')) || 1.0 },
-      resolution: { value: new THREE.Vector2(600, 800) }
+      resolution: { value: new THREE.Vector2(600, 800) },
+      blendMode: { value: getBlendModeValue(localStorage.getItem('blendMode') || 'normal') },
     },
     vertexShader: vertexShader,
     fragmentShader: fragmentShader
@@ -190,6 +200,7 @@ function updateUniforms() {
     material.uniforms.grainIntensity.value = parseFloat(document.getElementById('grainIntensity').value);
     material.uniforms.grainSize.value = parseFloat(document.getElementById('grainSize').value);
     material.uniforms.brightness.value = parseFloat(document.getElementById('brightness').value);
+    material.uniforms.blendMode.value = getBlendModeValue(document.getElementById('blendMode').value);
     renderScene(); // Add this line to render the scene after updating uniforms
   }
 }
@@ -362,19 +373,39 @@ startButton.addEventListener('click', () => {
   });
 });
 
-// Add this new function to load the sample image
-async function loadSampleImage() {
-  const texture = await loadTexture('/sample-img.jpg');
-  if (!material) {
-    material = createMaterial(texture);
-    const plane = new THREE.PlaneBufferGeometry(2, 2.5);
-    const mesh = new THREE.Mesh(plane, material);
-    scene.add(mesh);
-  } else {
-    material.uniforms.tDiffuse.value = texture;
-  }
-  renderScene();
+// Add this new function to handle the random image button click
+function handleRandomImageClick() {
+  loadSampleImage();
 }
+
+// Modify the existing loadSampleImage function
+async function loadSampleImage() {
+  try {
+    const response = await fetch('/random-background');
+    const data = await response.json();
+    
+    if (data.backgroundUrl) {
+      const texture = await loadTexture(data.backgroundUrl);
+      if (!material) {
+        material = createMaterial(texture);
+        const plane = new THREE.PlaneBufferGeometry(2, 2.5);
+        const mesh = new THREE.Mesh(plane, material);
+        scene.add(mesh);
+      } else {
+        material.uniforms.tDiffuse.value = texture;
+      }
+      renderScene();
+    } else {
+      console.error('No background image URL received');
+    }
+  } catch (error) {
+    console.error('Error loading random background:', error);
+  }
+}
+
+// Add this code near the end of the file, after the startButton event listener
+const randomImageButton = document.getElementById('randomImageButton');
+randomImageButton.addEventListener('click', handleRandomImageClick);
 
 // Initialize Three.js setup
 initThreeJS().then(() => {
@@ -386,4 +417,18 @@ initThreeJS().then(() => {
 function animate() {
   requestAnimationFrame(animate);
   // Remove renderScene() from here, as we'll call it explicitly when needed
+}
+
+function getBlendModeValue(mode) {
+  const modeMap = {
+    'normal': 0,
+    'lighten': 1,
+    'screen': 2,
+    'colorDodge': 3,
+    'linearDodge': 4,
+    'overlay': 5,
+    'softLight': 6,
+    'hardLight': 7
+  };
+  return modeMap[mode] || 0;
 }

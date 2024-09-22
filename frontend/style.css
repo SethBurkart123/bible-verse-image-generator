@@ -4,8 +4,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #252527FF;
   font-family: Arial, sans-serif;
+  color: #ffffff;
   gap: 20px;
 }
 canvas {
@@ -60,4 +61,8 @@ input[type="range"] {
 
 #progressText {
   font-size: 14px;
+}
+
+button, input {
+  filter: invert(1);
 }

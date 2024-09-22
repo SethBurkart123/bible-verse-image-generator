@@ -4,6 +4,7 @@ import os
 import base64
 from werkzeug.serving import run_simple
 from dotenv import load_dotenv
+import random
 
 load_dotenv()  # This loads the .env file
 
@@ -88,6 +89,14 @@ def serve_frontend(path):
 @app.route('/api/google-fonts-key')
 def get_google_fonts_key():
     return jsonify({"key": os.getenv('GOOGLE_FONTS_API_KEY')})
+
+@app.route('/random-background')
+def random_background():
+    if background_images:
+        random_image = random.choice(background_images)
+        return jsonify({"backgroundUrl": f"/backgrounds/{random_image}"})
+    else:
+        return jsonify({"error": "No background images available"}), 404
 
 if __name__ == '__main__':
     run_simple('localhost', 8000, app)

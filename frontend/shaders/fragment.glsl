@@ -7,9 +7,29 @@ uniform float grainIntensity;
 uniform float grainSize;
 uniform float brightness;
 uniform vec2 resolution;
+uniform int blendMode;
 
 float random(vec2 p) {
   return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453);
+}
+
+vec3 applyBlendMode(vec3 base, vec3 blend) {
+    if (blendMode == 1) { // Lighten
+        return max(base, blend);
+    } else if (blendMode == 2) { // Screen
+        return 1.0 - (1.0 - base) * (1.0 - blend);
+    } else if (blendMode == 3) { // Color Dodge
+        return base / (1.0 - blend);
+    } else if (blendMode == 4) { // Linear Dodge (Add)
+        return base + blend;
+    } else if (blendMode == 5) { // Overlay
+        return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), step(0.5, base));
+    } else if (blendMode == 6) { // Soft Light
+        return mix(2.0 * base * blend + base * base * (1.0 - 2.0 * blend), sqrt(base) * (2.0 * blend - 1.0) + 2.0 * base * (1.0 - blend), step(0.5, blend));
+    } else if (blendMode == 7) { // Hard Light
+        return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), step(0.5, blend));
+    }
+    return blend; // Normal blend (or any unrecognized mode)
 }
 
 void main() {
@@ -37,11 +57,14 @@ void main() {
   texel = mix(blurredTexel, texel, vignette);
   texel.rgb *= mix(1.0, vignette, vignetteIntensity);
 
-  // Grain effect
+  // Updated Grain effect with color-dodge blend mode
   vec2 grainUv = vUv * grainSize * resolution / 100.0;
   float noise = random(grainUv);
-  vec3 grain = vec3(noise) * grainIntensity;
-  texel.rgb = mix(texel.rgb, grain, grainIntensity);
+  vec3 grain = vec3(noise);
+
+  // Apply the selected blend mode for grain
+  vec3 blendedGrain = applyBlendMode(texel.rgb, grain);
+  texel.rgb = mix(texel.rgb, blendedGrain, grainIntensity);
 
   // Apply brightness
   texel.rgb *= brightness;
