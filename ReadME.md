@@ -10,7 +10,7 @@ The Bible Instagram Post Generator is a web application that allows users to cre
 
 - Generates images with Bible verses and references
 - Customizable visual effects (vignette, grain, brightness)
-- Adjustable font styles and sizes
+- Adjustable font styles and sizes (using Google Fonts API)
 - Background image selection
 - Batch processing of multiple verses
 
