@@ -65,6 +65,9 @@ function saveSettings() {
   localStorage.setItem('vignetteSize', document.getElementById('vignetteSize').value);
   localStorage.setItem('vignetteIntensity', document.getElementById('vignetteIntensity').value);
   localStorage.setItem('vignetteBlur', document.getElementById('vignetteBlur').value);
+  localStorage.setItem('dreamyBlur', document.getElementById('dreamyBlur').value);
+  localStorage.setItem('dreamyBlurSize', document.getElementById('dreamyBlurSize').value);
+  localStorage.setItem('dreamyBlurIntensity', document.getElementById('dreamyBlurIntensity').value);
   localStorage.setItem('grainIntensity', document.getElementById('grainIntensity').value);
   localStorage.setItem('grainSize', document.getElementById('grainSize').value);
   localStorage.setItem('brightness', document.getElementById('brightness').value);
@@ -73,6 +76,9 @@ function saveSettings() {
   localStorage.setItem('verseFontSize', document.getElementById('verseFontSize').value);
   localStorage.setItem('referenceFontSize', document.getElementById('referenceFontSize').value);
   localStorage.setItem('blendMode', document.getElementById('blendMode').value);
+  localStorage.setItem('dreamyVignetteSize', document.getElementById('dreamyVignetteSize').value);
+  localStorage.setItem('dreamyVignetteIntensity', document.getElementById('dreamyVignetteIntensity').value);
+  localStorage.setItem('chromaticAberration', document.getElementById('chromaticAberration').value);
 }
 
 function loadSettings() {
@@ -80,12 +86,18 @@ function loadSettings() {
   document.getElementById('vignetteSize').value = localStorage.getItem('vignetteSize') || '0.8';
   document.getElementById('vignetteIntensity').value = localStorage.getItem('vignetteIntensity') || '0.59';
   document.getElementById('vignetteBlur').value = localStorage.getItem('vignetteBlur') || '98.7';
+  document.getElementById('dreamyBlur').value = localStorage.getItem('dreamyBlur') || '0';
+  document.getElementById('dreamyBlurSize').value = localStorage.getItem('dreamyBlurSize') || '0.5';
+  document.getElementById('dreamyBlurIntensity').value = localStorage.getItem('dreamyBlurIntensity') || '0.5';
   document.getElementById('grainIntensity').value = localStorage.getItem('grainIntensity') || '0.1';
   document.getElementById('grainSize').value = localStorage.getItem('grainSize') || '1';
   document.getElementById('brightness').value = localStorage.getItem('brightness') || '1';
   document.getElementById('verseFontSize').value = localStorage.getItem('verseFontSize') || '40';
   document.getElementById('referenceFontSize').value = localStorage.getItem('referenceFontSize') || '18';
   document.getElementById('blendMode').value = localStorage.getItem('blendMode') || 'normal';
+  document.getElementById('dreamyVignetteSize').value = localStorage.getItem('dreamyVignetteSize') || '0.8';
+  document.getElementById('dreamyVignetteIntensity').value = localStorage.getItem('dreamyVignetteIntensity') || '1';
+  document.getElementById('chromaticAberration').value = localStorage.getItem('chromaticAberration') || '0';
 
   // Load saved fonts from localStorage
   const savedVerseFont = localStorage.getItem('verseFont') || 'Noto Serif';
@@ -108,6 +120,9 @@ function loadSettings() {
 document.getElementById('vignetteSize').addEventListener('input', saveSettings);
 document.getElementById('vignetteIntensity').addEventListener('input', saveSettings);
 document.getElementById('vignetteBlur').addEventListener('input', saveSettings);
+document.getElementById('dreamyBlur').addEventListener('input', saveSettings);
+document.getElementById('dreamyBlurSize').addEventListener('input', saveSettings);
+document.getElementById('dreamyBlurIntensity').addEventListener('input', saveSettings);
 document.getElementById('grainIntensity').addEventListener('input', saveSettings);
 document.getElementById('grainSize').addEventListener('input', saveSettings);
 document.getElementById('brightness').addEventListener('input', saveSettings);
@@ -136,6 +151,9 @@ document.getElementById('blendMode').addEventListener('change', function() {
   }
   saveSettings();
 });
+document.getElementById('dreamyVignetteSize').addEventListener('input', updateUniforms);
+document.getElementById('dreamyVignetteIntensity').addEventListener('input', updateUniforms);
+document.getElementById('chromaticAberration').addEventListener('input', updateUniforms);
 
 loadSettings();
 
@@ -166,11 +184,17 @@ function createMaterial(texture) {
       vignetteSize: { value: parseFloat(localStorage.getItem('vignetteSize')) || 0.8 },
       vignetteIntensity: { value: parseFloat(localStorage.getItem('vignetteIntensity')) || 1.5 },
       vignetteBlur: { value: parseFloat(localStorage.getItem('vignetteBlur')) || 5.0 },
+      dreamyBlur: { value: parseFloat(localStorage.getItem('dreamyBlur')) || 0 },
+      dreamyBlurSize: { value: parseFloat(localStorage.getItem('dreamyBlurSize')) || 0.5 },
+      dreamyBlurIntensity: { value: parseFloat(localStorage.getItem('dreamyBlurIntensity')) || 0.5 },
       grainIntensity: { value: parseFloat(localStorage.getItem('grainIntensity')) || 0.1 },
       grainSize: { value: parseFloat(localStorage.getItem('grainSize')) || 1.0 },
       brightness: { value: parseFloat(localStorage.getItem('brightness')) || 1.0 },
       resolution: { value: new THREE.Vector2(600, 800) },
       blendMode: { value: getBlendModeValue(localStorage.getItem('blendMode') || 'normal') },
+      dreamyVignetteSize: { value: parseFloat(localStorage.getItem('dreamyVignetteSize')) || 0.8 },
+      dreamyVignetteIntensity: { value: parseFloat(localStorage.getItem('dreamyVignetteIntensity')) || 1 },
+      chromaticAberration: { value: parseFloat(localStorage.getItem('chromaticAberration')) || 0 },
     },
     vertexShader: vertexShader,
     fragmentShader: fragmentShader
@@ -187,6 +211,9 @@ async function loadTexture(url) {
 document.getElementById('vignetteSize').addEventListener('input', updateUniforms);
 document.getElementById('vignetteIntensity').addEventListener('input', updateUniforms);
 document.getElementById('vignetteBlur').addEventListener('input', updateUniforms);
+document.getElementById('dreamyBlur').addEventListener('input', updateUniforms);
+document.getElementById('dreamyBlurSize').addEventListener('input', updateUniforms);
+document.getElementById('dreamyBlurIntensity').addEventListener('input', updateUniforms);
 document.getElementById('grainIntensity').addEventListener('input', updateUniforms);
 document.getElementById('grainSize').addEventListener('input', updateUniforms);
 document.getElementById('brightness').addEventListener('input', updateUniforms);
@@ -196,10 +223,16 @@ function updateUniforms() {
     material.uniforms.vignetteSize.value = parseFloat(document.getElementById('vignetteSize').value);
     material.uniforms.vignetteIntensity.value = parseFloat(document.getElementById('vignetteIntensity').value);
     material.uniforms.vignetteBlur.value = parseFloat(document.getElementById('vignetteBlur').value);
+    material.uniforms.dreamyBlur.value = parseFloat(document.getElementById('dreamyBlur').value);
+    material.uniforms.dreamyBlurSize.value = parseFloat(document.getElementById('dreamyBlurSize').value);
+    material.uniforms.dreamyBlurIntensity.value = parseFloat(document.getElementById('dreamyBlurIntensity').value);
     material.uniforms.grainIntensity.value = parseFloat(document.getElementById('grainIntensity').value);
     material.uniforms.grainSize.value = parseFloat(document.getElementById('grainSize').value);
     material.uniforms.brightness.value = parseFloat(document.getElementById('brightness').value);
     material.uniforms.blendMode.value = getBlendModeValue(document.getElementById('blendMode').value);
+    material.uniforms.dreamyVignetteSize.value = parseFloat(document.getElementById('dreamyVignetteSize').value);
+    material.uniforms.dreamyVignetteIntensity.value = parseFloat(document.getElementById('dreamyVignetteIntensity').value);
+    material.uniforms.chromaticAberration.value = parseFloat(document.getElementById('chromaticAberration').value);
     renderScene(); // Add this line to render the scene after updating uniforms
   }
 }

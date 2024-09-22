@@ -26,6 +26,15 @@
     <label for="vignetteBlur">Vignette Blur:</label>
     <input type="range" id="vignetteBlur" min="0" max="500" step="0.1" value="98.7">
     
+    <label for="dreamyBlur">Dreamy Blur:</label>
+    <input type="range" id="dreamyBlur" min="0" max="1" step="0.01" value="0">
+
+    <label for="dreamyBlurSize">Dreamy Blur Size:</label>
+    <input type="range" id="dreamyBlurSize" min="0" max="1" step="0.01" value="0.5">
+
+    <label for="dreamyBlurIntensity">Dreamy Blur Intensity:</label>
+    <input type="range" id="dreamyBlurIntensity" min="0" max="1" step="0.01" value="0.5">
+    
     <label for="grainIntensity">Grain Intensity:</label>
     <input type="range" id="grainIntensity" min="0" max="1" step="0.01" value="0.1">
     
@@ -66,6 +75,16 @@
       <span id="progressText">0%</span>
     </div>
     <button id="startButton">Start Generation</button>
+
+    <!-- Add these new sliders just after the existing dreamyBlurIntensity slider -->
+    <label for="dreamyVignetteSize">Dreamy Vignette Size:</label>
+    <input type="range" id="dreamyVignetteSize" min="0" max="1" step="0.01" value="0.8">
+
+    <label for="dreamyVignetteIntensity">Dreamy Vignette Intensity:</label>
+    <input type="range" id="dreamyVignetteIntensity" min="0" max="1" step="0.01" value="1">
+
+    <label for="chromaticAberration">Chromatic Aberration:</label>
+    <input type="range" id="chromaticAberration" min="0" max="0.01" step="0.0001" value="0">
 </div>
 
 <script src="/index.js"></script>
