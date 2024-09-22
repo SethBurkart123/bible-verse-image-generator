@@ -149,13 +149,12 @@ async function loadShaders() {
   fragmentShader = await fragmentResponse.text();
 }
 
-let renderer, scene, camera, material;
+let renderer, scene, camera, material, mesh;
 let isRendering = false;
 
 async function initThreeJS() {
   await loadShaders();
   scene = new THREE.Scene();
-  camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   renderer = new THREE.WebGLRenderer({canvas: document.getElementById('imageCanvas')});
   renderer.setSize(600, 800);
 }
@@ -250,15 +249,7 @@ async function loadNextVerse() {
 
   // Load new background image
   const texture = await loadTexture(data.backgroundUrl);
-  
-  if (!material) {
-    material = createMaterial(texture);
-    const plane = new THREE.PlaneBufferGeometry(2, 2.5);
-    const mesh = new THREE.Mesh(plane, material);
-    scene.add(mesh);
-  } else {
-    material.uniforms.tDiffuse.value = texture;
-  }
+  updateSceneForTexture(texture);
 
   return true;
 }
@@ -396,15 +387,7 @@ async function loadSampleImage() {
     
     if (data.backgroundUrl) {
       const texture = await loadTexture(data.backgroundUrl);
-      if (!material) {
-        material = createMaterial(texture);
-        const plane = new THREE.PlaneBufferGeometry(2, 2.5);
-        const mesh = new THREE.Mesh(plane, material);
-        scene.add(mesh);
-      } else {
-        material.uniforms.tDiffuse.value = texture;
-      }
-      renderScene();
+      updateSceneForTexture(texture);
     } else {
       console.error('No background image URL received');
     }
@@ -441,4 +424,44 @@ function getBlendModeValue(mode) {
     'hardLight': 7
   };
   return modeMap[mode] || 0;
+}
+
+// Add this new function to update the scene based on the loaded texture
+function updateSceneForTexture(texture) {
+  const containerAspectRatio = 600 / 800;
+  const imageAspectRatio = texture.image.width / texture.image.height;
+
+  let planeWidth, planeHeight;
+  if (imageAspectRatio > containerAspectRatio) {
+    // Image is wider than container, so we'll crop the sides
+    planeHeight = 2;
+    planeWidth = 2 * (imageAspectRatio / containerAspectRatio);
+  } else {
+    // Image is taller than container, so we'll crop top and bottom
+    planeWidth = 2;
+    planeHeight = 2 * (containerAspectRatio / imageAspectRatio);
+  }
+
+  // Update camera
+  camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+  // Update or create plane geometry
+  if (mesh) {
+    scene.remove(mesh);
+  }
+  const planeGeometry = new THREE.PlaneBufferGeometry(planeWidth, planeHeight);
+  
+  if (!material) {
+    material = createMaterial(texture);
+  } else {
+    material.uniforms.tDiffuse.value = texture;
+  }
+
+  mesh = new THREE.Mesh(planeGeometry, material);
+  scene.add(mesh);
+
+  // Update material uniform
+  material.uniforms.resolution.value = new THREE.Vector2(600, 800);
+
+  renderScene();
 }

@@ -48,13 +48,21 @@ void main() {
   for (int i = 0; i < samples; i++) {
     float angle = float(i) * (2.0 * 3.14159 / float(samples));
     vec2 offset = vec2(cos(angle), sin(angle)) * blurSize;
+    
+    // Clamp the sampling coordinates to prevent wrapping
+    vec2 sampleCoord = clamp(vUv + offset, vec2(0.0), vec2(1.0));
+    
     float weight = 1.0 - smoothstep(0.0, 1.0, length(offset) / blurSize);
-    blurredTexel += texture2D(tDiffuse, vUv + offset) * weight;
+    blurredTexel += texture2D(tDiffuse, sampleCoord) * weight;
     totalWeight += weight;
   }
   blurredTexel /= totalWeight;
 
-  texel = mix(blurredTexel, texel, vignette);
+  // Adjust the mix factor to reduce the visibility of the blur at the edges
+  float blurMixFactor = smoothstep(0.0, vignetteSize, dist);
+  texel = mix(texel, blurredTexel, blurMixFactor * vignette);
+  
+  // Apply vignette darkening
   texel.rgb *= mix(1.0, vignette, vignetteIntensity);
 
   // Updated Grain effect with color-dodge blend mode
