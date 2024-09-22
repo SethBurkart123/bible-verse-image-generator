@@ -1,0 +1,349 @@
+[
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "process",
+        "importPath": "fuzzywuzzy",
+        "description": "fuzzywuzzy",
+        "isExtraImport": true,
+        "detail": "fuzzywuzzy",
+        "documentation": {}
+    },
+    {
+        "label": "Console",
+        "importPath": "rich.console",
+        "description": "rich.console",
+        "isExtraImport": true,
+        "detail": "rich.console",
+        "documentation": {}
+    },
+    {
+        "label": "RichHandler",
+        "importPath": "rich.logging",
+        "description": "rich.logging",
+        "isExtraImport": true,
+        "detail": "rich.logging",
+        "documentation": {}
+    },
+    {
+        "label": "Progress",
+        "importPath": "rich.progress",
+        "description": "rich.progress",
+        "isExtraImport": true,
+        "detail": "rich.progress",
+        "documentation": {}
+    },
+    {
+        "label": "SpinnerColumn",
+        "importPath": "rich.progress",
+        "description": "rich.progress",
+        "isExtraImport": true,
+        "detail": "rich.progress",
+        "documentation": {}
+    },
+    {
+        "label": "TextColumn",
+        "importPath": "rich.progress",
+        "description": "rich.progress",
+        "isExtraImport": true,
+        "detail": "rich.progress",
+        "documentation": {}
+    },
+    {
+        "label": "OrderedDict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "send_from_directory",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "run_simple",
+        "importPath": "werkzeug.serving",
+        "description": "werkzeug.serving",
+        "isExtraImport": true,
+        "detail": "werkzeug.serving",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "get_verse_by_reference",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def get_verse_by_reference(book_name, chapter, verse):\n    # Path to the SQLite file\n    db_path = \"./bible/NLT2015.SQLite3\"\n    # Connect to the database\n    conn = sqlite3.connect(db_path)\n    # Query to get all book names\n    all_books_query = \"SELECT long_name FROM books_all;\"\n    all_books = [row[0] for row in conn.execute(all_books_query).fetchall()]\n    # Perform fuzzy matching\n    best_match, score = process.extractOne(book_name, all_books)",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "clean_verse_text",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def clean_verse_text(text):\n    # Remove HTML-like tags\n    text = text.replace('<pb/>', '').replace('<J>', '').replace('</J>', '')\\\n               .replace('<f>', '').replace('</f>', '').replace('<t>', '').replace('</t>', '')\\\n               .replace('<e>', '').replace('</e>', '')   \n    # Remove numbered references in square brackets\n    text = re.sub(r'\\[\\d+\\]', '', text)\n    # Remove any extra whitespace\n    text = ' '.join(text.split())\n    return text",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "process_verse_references",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def process_verse_references(verse_references):\n    console.print(f\"[bold green]Processing {len(verse_references)} verse references[/bold green]\")\n    output = []\n    processed_references = set()\n    duplicate_count = 0\n    # Calculate total number of verses\n    total_verses = 0\n    for ref in verse_references:\n        reference = ref['reference']\n        try:",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "read_references_from_txt",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def read_references_from_txt(input_file):\n    console.print(f\"[bold blue]Reading verse references from {input_file}[/bold blue]\")\n    with open(input_file, 'r') as file:\n        references = [line.strip() for line in file if line.strip()]\n    console.print(f\"[green]Read {len(references)} verse references[/green]\")\n    return [{\"reference\": ref} for ref in references]\n# New function to write unique references back to the TXT file\ndef write_unique_references_to_txt(input_file, unique_references):\n    console.print(f\"[bold blue]Writing {len(unique_references)} unique references back to {input_file}[/bold blue]\")\n    with open(input_file, 'w') as file:",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "write_unique_references_to_txt",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def write_unique_references_to_txt(input_file, unique_references):\n    console.print(f\"[bold blue]Writing {len(unique_references)} unique references back to {input_file}[/bold blue]\")\n    with open(input_file, 'w') as file:\n        for ref in unique_references:\n            file.write(f\"{ref['reference']}\\n\")\n    console.print(\"[green]Unique references written successfully[/green]\")\n# Function to write verses to a JSON file\ndef write_verses_to_json(output_file, verses):\n    console.print(f\"[bold blue]Writing {len(verses)} verses to {output_file}[/bold blue]\")\n    with open(output_file, 'w') as file:",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "write_verses_to_json",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def write_verses_to_json(output_file, verses):\n    console.print(f\"[bold blue]Writing {len(verses)} verses to {output_file}[/bold blue]\")\n    with open(output_file, 'w') as file:\n        json.dump(verses, file, indent=2)\n    console.print(\"[green]Verses written successfully[/green]\")\ndef is_subset_reference(ref1, ref2):\n    \"\"\"Check if ref1 is a subset of ref2\"\"\"\n    book1, chapter_verse1 = ref1.rsplit(' ', 1)\n    book2, chapter_verse2 = ref2.rsplit(' ', 1)\n    if book1 != book2:",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "is_subset_reference",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def is_subset_reference(ref1, ref2):\n    \"\"\"Check if ref1 is a subset of ref2\"\"\"\n    book1, chapter_verse1 = ref1.rsplit(' ', 1)\n    book2, chapter_verse2 = ref2.rsplit(' ', 1)\n    if book1 != book2:\n        return False\n    chapter1, verse1 = chapter_verse1.split(':')\n    chapter2, verse2 = chapter_verse2.split(':')\n    if chapter1 != chapter2:\n        return False",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "remove_duplicate_references",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def remove_duplicate_references(references):\n    unique_refs = OrderedDict()\n    removed_count = 0\n    for ref in references:\n        current_ref = ref['reference']\n        is_duplicate = False\n        for existing_ref in list(unique_refs.keys()):\n            if is_subset_reference(current_ref, existing_ref):\n                is_duplicate = True\n                break",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "def main():\n    console.print(\"[bold magenta]Starting verse extraction process[/bold magenta]\")\n    # Input and output file paths\n    input_file = './verse_references.txt'\n    output_file = './verses.json'\n    # Read references from input TXT\n    verse_references = read_references_from_txt(input_file)\n    # Remove duplicate references\n    unique_references, removed_count = remove_duplicate_references(verse_references)\n    # Process the unique verse references",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "console",
+        "kind": 5,
+        "importPath": "verses.extract",
+        "description": "verses.extract",
+        "peekOfCode": "console = Console()\nlogging.basicConfig(\n    level=\"INFO\",\n    format=\"%(message)s\",\n    datefmt=\"[%X]\",\n    handlers=[RichHandler(rich_tracebacks=True, console=console)]\n)\n# Function to retrieve a specific verse from the database\ndef get_verse_by_reference(book_name, chapter, verse):\n    # Path to the SQLite file",
+        "detail": "verses.extract",
+        "documentation": {}
+    },
+    {
+        "label": "next_verse",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})\n    # Check if we've run out of backgrounds\n    if len(background_images) == 0:\n        # Move all processed backgrounds back to the background_dir\n        processed_images = os.listdir(processed_dir)\n        for image in processed_images:\n            os.rename(os.path.join(processed_dir, image), os.path.join(background_dir, image))",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "export_image",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def export_image():\n    global background_images\n    data = request.json\n    image_data = data['imageData'].replace(\"data:image/png;base64,\", \"\")\n    verse = data['verse']\n    reference = data['reference']\n    file_name = f\"{reference.replace(' ', '_')}.png\"\n    with open(os.path.join(output_dir, file_name), \"wb\") as f:\n        f.write(base64.b64decode(image_data))\n    # Move the used background image to the processed folder",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "serve_background",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def serve_background(filename):\n    return send_from_directory(background_dir, filename)\n@app.route('/', defaults={'path': ''})\n@app.route('/<path:path>')\ndef serve_frontend(path):\n    if path and os.path.exists(os.path.join(app.static_folder, path)):\n        return send_from_directory(app.static_folder, path)\n    else:\n        return send_from_directory(app.static_folder, 'index.html')\n@app.route('/api/google-fonts-key')",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "serve_frontend",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def serve_frontend(path):\n    if path and os.path.exists(os.path.join(app.static_folder, path)):\n        return send_from_directory(app.static_folder, path)\n    else:\n        return send_from_directory(app.static_folder, 'index.html')\n@app.route('/api/google-fonts-key')\ndef get_google_fonts_key():\n    return jsonify({\"key\": os.getenv('GOOGLE_FONTS_API_KEY')})\nif __name__ == '__main__':\n    run_simple('localhost', 8000, app)",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "get_google_fonts_key",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def get_google_fonts_key():\n    return jsonify({\"key\": os.getenv('GOOGLE_FONTS_API_KEY')})\nif __name__ == '__main__':\n    run_simple('localhost', 8000, app)",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "app = Flask(__name__, static_folder='frontend')\nwith open(\"verses/verses.json\", \"r\") as f:\n    verses = json.load(f)\nbackground_dir = \"backgrounds\"\noutput_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "background_dir",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "background_dir = \"backgrounds\"\noutput_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "output_dir",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "output_dir = \"output\"\nprocessed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "processed_dir",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "processed_dir = \"processed_backgrounds\"\ncurrent_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "current_verse_index",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "current_verse_index = 0\nbackground_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})\n    # Check if we've run out of backgrounds",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "background_images",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "background_images = os.listdir(background_dir)\nos.makedirs(output_dir, exist_ok=True)\nos.makedirs(processed_dir, exist_ok=True)\n@app.route('/next-verse')\ndef next_verse():\n    global current_verse_index, background_images\n    if current_verse_index >= len(verses):\n        return jsonify({\"done\": True})\n    # Check if we've run out of backgrounds\n    if len(background_images) == 0:",
+        "detail": "server",
+        "documentation": {}
+    }
+]
