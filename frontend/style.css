@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  gap: 20px;
+}
+canvas {
+  width: 400px;
+  height: 500px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+.controls {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+label {
+  text-align: right;
+}
+input[type="range"] {
+  width: 200px;
+}
+.verse-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  font-family: 'Noto Serif', serif;
+  width: 80%;
+}
+.verse {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.reference {
+  font-size: 18px;
+  font-style: italic;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+#progressContainer {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#progressBar {
+  width: 200px;
+  margin-right: 10px;
+}
+
+#progressText {
+  font-size: 14px;
+}

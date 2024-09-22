@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL Image Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="image-container" style="position: relative;">
+    <canvas id="imageCanvas"></canvas>
+    <div class="verse-container">
+        <p class="verse">"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p>
+        <p class="reference">John 3:16</p>
+    </div>
+</div>
+<div class="controls">
+    <label for="vignetteSize">Vignette Size:</label>
+    <input type="range" id="vignetteSize" min="0" max="2" step="0.01" value="0.8">
+    
+    <label for="vignetteIntensity">Vignette Intensity:</label>
+    <input type="range" id="vignetteIntensity" min="0" max="3" step="0.01" value="0.59">
+    
+    <label for="vignetteBlur">Vignette Blur:</label>
+    <input type="range" id="vignetteBlur" min="0" max="500" step="0.1" value="98.7">
+    
+    <label for="grainIntensity">Grain Intensity:</label>
+    <input type="range" id="grainIntensity" min="0" max="1" step="0.01" value="0.1">
+    
+    <label for="grainSize">Grain Size:</label>
+    <input type="range" id="grainSize" min="1" max="10" step="0.1" value="1">
+    
+    <label for="brightness">Brightness:</label> <!-- Added brightness control -->
+    <input type="range" id="brightness" min="0" max="2" step="0.01" value="1">
+
+    <label for="verseFont">Verse Font:</label>
+    <select id="verseFont"></select>
+
+    <label for="referenceFont">Reference Font:</label>
+    <select id="referenceFont"></select>
+
+    <label for="verseFontSize">Verse Font Size:</label>
+    <input type="range" id="verseFontSize" min="10" max="80" step="1" value="40">
+    
+    <label for="referenceFontSize">Reference Font Size:</label>
+    <input type="range" id="referenceFontSize" min="8" max="40" step="1" value="18">
+
+    <div id="progressContainer" style="display: none;">
+      <progress id="progressBar" value="0" max="100"></progress>
+      <span id="progressText">0%</span>
+    </div>
+    <button id="startButton">Start Generation</button>
+</div>
+
+<script src="/index.js"></script>
+</body>
+</html>
