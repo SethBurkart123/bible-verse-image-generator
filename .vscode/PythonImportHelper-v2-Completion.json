@@ -43,22 +43,6 @@
         "documentation": {}
     },
     {
-        "label": "Console",
-        "importPath": "rich.console",
-        "description": "rich.console",
-        "isExtraImport": true,
-        "detail": "rich.console",
-        "documentation": {}
-    },
-    {
-        "label": "RichHandler",
-        "importPath": "rich.logging",
-        "description": "rich.logging",
-        "isExtraImport": true,
-        "detail": "rich.logging",
-        "documentation": {}
-    },
-    {
         "label": "RichHandler",
         "importPath": "rich.logging",
         "description": "rich.logging",
@@ -91,14 +75,6 @@
         "documentation": {}
     },
     {
-        "label": "Progress",
-        "importPath": "rich.progress",
-        "description": "rich.progress",
-        "isExtraImport": true,
-        "detail": "rich.progress",
-        "documentation": {}
-    },
-    {
         "label": "OrderedDict",
         "importPath": "collections",
         "description": "collections",
@@ -113,40 +89,6 @@
         "importPath": "re",
         "description": "re",
         "detail": "re",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
-        "label": "requests",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
         "documentation": {}
     },
     {
@@ -182,6 +124,15 @@
         "documentation": {}
     },
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
         "label": "base64",
         "kind": 6,
         "isExtraImport": true,
@@ -196,6 +147,14 @@
         "description": "werkzeug.serving",
         "isExtraImport": true,
         "detail": "werkzeug.serving",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
         "documentation": {}
     },
     {
@@ -286,69 +245,6 @@
         "description": "verses.extract",
         "peekOfCode": "console = Console()\nlogging.basicConfig(\n    level=\"INFO\",\n    format=\"%(message)s\",\n    datefmt=\"[%X]\",\n    handlers=[RichHandler(rich_tracebacks=True, console=console)]\n)\n# Function to retrieve a specific verse from the database\ndef get_verse_by_reference(book_name, chapter, verse):\n    # Path to the SQLite file",
         "detail": "verses.extract",
-        "documentation": {}
-    },
-    {
-        "label": "download_image",
-        "kind": 2,
-        "importPath": "download",
-        "description": "download",
-        "peekOfCode": "def download_image(url: str, filepath: str) -> None:\n    response = requests.get(url, headers = {\n            'accept': '*/*',\n            'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',\n            'authorization': 'Bearer 429149923_G_tLXy8ypVFThKceT43RUw',\n            'content-type': 'application/json',\n            'cookie': '_cfuvid=urqgYlcW8RFToETijuS5OOG1KfJXuoV9IsFuQkubX6Y-1726981804758-0.0.1.1-604800000; active_experiment={\"id\":\"getty_big_ad\",\"variant\":{\"id\":\"fixed_height_grid_with_ad\"}}; _sp_ses.9ec1=*; ab.storage.deviceId.5791d6db-4410-4ace-8814-12c903a548ba=%7B%22g%22%3A%22cafff100-d05e-2b24-2408-587dd2d6204d%22%2C%22c%22%3A1717750013170%2C%22l%22%3A1726982437036%7D; locale=en-US; NEXT_LOCALE=en-US; __cf_bm=A53zu5ExO5XZ1zZakrPtz1f0sq1UJgqYpMtTrAlrorA-1726982946-1.0.1.1-H61U5aBneDeHgHCa76Q7CIMDAi67gjKD3riOlAQk7eeOVX3pCTYEp13sSh3vxugBjh7jyBerigtBOljwiyAPOQ; google-one-tap-skip-prompt=true; g_state={\"i_l\":0}; pexels_auth=true; remember_user_token=eyJfcmFpbHMiOnsibWVzc2FnZSI6IlcxczBNamt4TkRrNU1qTmRMQ0lrTW1Fa01UQWtlVGRQV2twc1RsbHpkME55TkZseEx6UkZSRzUyWlNJc0lqRTNNalk1T0RJNU5UY3VOVGs1TkRnMElsMD0iLCJleHAiOiIyMDI1LTA5LTIyVDA1OjI5OjE3LjU5OVoiLCJwdXIiOiJjb29raWUucmVtZW1iZXJfdXNlcl90b2tlbiJ9fQ%3D%3D--257428be407f14eb4a427c9fc9d5600454a6531a; authHeader=Bearer 429149923_G_tLXy8ypVFThKceT43RUw; ab.storage.sessionId.5791d6db-4410-4ace-8814-12c903a548ba=%7B%22g%22%3A%22a6f0d8ef-8c49-9cfd-9f15-956be2611fe2%22%2C%22e%22%3A1726984834338%2C%22c%22%3A1726982437036%2C%22l%22%3A1726983034338%7D; OptanonConsent=isGpcEnabled=0&datestamp=Sun+Sep+22+2024+15%3A42%3A57+GMT%2B1000+(Australian+Eastern+Standard+Time)&version=202301.1.0&isIABGlobal=false&hosts=&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A0&AwaitingReconsent=false; cf_clearance=o_N.oFWks6CT2mugrjegWKT4gGOAAYljewJRvI0wp_k-1726983777-1.2.1.1-1y7YBKv9EtRSm_UF6frb8O2mjddKT_FUapQPvaEWsrcoUB1CDMnCEJfv0yJwAmosa0ZQv71bz6uIyvDJOmxNTNkvP6KsRWf1OSZ.s99ETMkQ8D3.Fq0QQU7JzHhpnpa7bj92SyVOyaZpMTJ_VclhKUS_7t0cOrni.1tsXMyUKwN3Ub_85N9l2D7kBpWhIUBXDvX0QN5qqyGUvcE2Xhp23m4JnsZ76h9fr7Pzeph6sVoN11FTQmc8OlSYjcxDuDv7zkPJsf24aUP9pOkUio.oR4i2.3jVaoJshxSmOCMyGRZWMYKgnxZafE6cnB1vz6jVI8l23Hq_AlnXri78s7BgaWXUSIMDJ9Mcac_IWnKbRMzhwyUYOsK5c6xjtcIAUXKpPmiHleRNG6.ODdSo5Fi1PQ; country-code-v2=AU; _sp_id.9ec1=d5ec39f7-a9b6-4e92-946c-cf902d2b1597.1717750128.4.1726983841.1725658644.f9828085-95c3-49cf-a4d0-1a6ebf6f0bfa.3eef8bad-6446-4263-9e54-6f2492a21744.3cf50fad-b2ce-49a7-973e-08734f0ac6a9.1726981805312.27; _pexels_session=i6K6IvnTYCAhkSt4dS3XnWp%2B%2FEXPC9%2Bsqxh7uCoagL0gPVzYh5cT3QfDsxSBm9SSoq0%2Fj%2FDpQHYBdBIxew3Z3EP7Fu%2FCC0rKssYV%2BVelbyKQ9QEzYBaCOY%2FFEvP03Fr9ROwFECJ5xa4Y%2BidftneHRVrd%2BcWF7XjoeGiyn0S%2BTYiTCnkegiq42rzovOkn5Bza1FGO%2FdWNqHi88k58ItGZtKf65bIIAzDxJ5lgteYp0N5Aea40a4KrnXBgllgS6KYBt98NBkEgHlpO4R4tdNTu8uzVdpoc3R%2Fy3sNrjT1KBiva3dMkj9CxbbCBRCk2KQPIX3l7VAet1S%2FripdRlBRiJXH218jxS50qp%2FMXynMuQ2jUazYo8Xf2sP%2FKLKNOut%2F9nDXB1Z3XLIAClWhAg2MHzzE6bpuDfdSvxbYuEM1rmKLrnjhhKcFdhqFSupv7gp0MFuDoupNA4QnEPTz7gA9Pl%2FSYSPvQWowp3pnqFgIcpN5yKYXtqz8mqKPcEDuasQtHAW%2FMi9FZNnzUu%2BE47YoiG3dYGdu55um%2FyfT66TbK6g%3D%3D--oZl0d6HQ2Mr8MjAt--cHg75RYkkXRW3ChylIdpBw%3D%3D',\n            'dnt': '1',\n            'priority': 'u=1, i',\n            'referer': 'https://www.pexels.com/search/nature/',",
-        "detail": "download",
-        "documentation": {}
-    },
-    {
-        "label": "search_images",
-        "kind": 2,
-        "importPath": "download",
-        "description": "download",
-        "peekOfCode": "def search_images(query: str, num_images: int) -> list:\n    all_photos = []\n    page = 1\n    while len(all_photos) < num_images:\n        url = f'https://www.pexels.com/en-us/api/v3/search/photos'\n        params = {\n            'query': query,\n            'page': page,\n            'per_page': min(24, num_images),\n            'orientation': 'portrait',",
-        "detail": "download",
-        "documentation": {}
-    },
-    {
-        "label": "download_images",
-        "kind": 2,
-        "importPath": "download",
-        "description": "download",
-        "peekOfCode": "def download_images(query: str, num_images: int) -> None:\n    images = search_images(query, num_images)\n    console.print(images)\n    downloaded_images = set()\n    with Progress() as progress:\n        task = progress.add_task(\"[cyan]Downloading images...\", total=len(images))\n        for image in images:\n            image_url = image[\"attributes\"][\"image\"][\"large\"]  # At least 1080px wide\n            image_id = image[\"id\"]\n            if image_url not in downloaded_images:",
-        "detail": "download",
-        "documentation": {}
-    },
-    {
-        "label": "log",
-        "kind": 5,
-        "importPath": "download",
-        "description": "download",
-        "peekOfCode": "log = logging.getLogger(\"pexels_downloader\")\n# Load environment variables\nload_dotenv()\n# Pexels API configuration\nPEXELS_API_KEY = os.getenv(\"PEXELS_API_KEY\")\nPEXELS_PHOTO_URL = \"https://api.pexels.com/v1/search\"\nconsole = Console()\ndef download_image(url: str, filepath: str) -> None:\n    response = requests.get(url, headers = {\n            'accept': '*/*',",
-        "detail": "download",
-        "documentation": {}
-    },
-    {
-        "label": "PEXELS_API_KEY",
-        "kind": 5,
-        "importPath": "download",
-        "description": "download",
-        "peekOfCode": "PEXELS_API_KEY = os.getenv(\"PEXELS_API_KEY\")\nPEXELS_PHOTO_URL = \"https://api.pexels.com/v1/search\"\nconsole = Console()\ndef download_image(url: str, filepath: str) -> None:\n    response = requests.get(url, headers = {\n            'accept': '*/*',\n            'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',\n            'authorization': 'Bearer 429149923_G_tLXy8ypVFThKceT43RUw',\n            'content-type': 'application/json',\n            'cookie': '_cfuvid=urqgYlcW8RFToETijuS5OOG1KfJXuoV9IsFuQkubX6Y-1726981804758-0.0.1.1-604800000; active_experiment={\"id\":\"getty_big_ad\",\"variant\":{\"id\":\"fixed_height_grid_with_ad\"}}; _sp_ses.9ec1=*; ab.storage.deviceId.5791d6db-4410-4ace-8814-12c903a548ba=%7B%22g%22%3A%22cafff100-d05e-2b24-2408-587dd2d6204d%22%2C%22c%22%3A1717750013170%2C%22l%22%3A1726982437036%7D; locale=en-US; NEXT_LOCALE=en-US; __cf_bm=A53zu5ExO5XZ1zZakrPtz1f0sq1UJgqYpMtTrAlrorA-1726982946-1.0.1.1-H61U5aBneDeHgHCa76Q7CIMDAi67gjKD3riOlAQk7eeOVX3pCTYEp13sSh3vxugBjh7jyBerigtBOljwiyAPOQ; google-one-tap-skip-prompt=true; g_state={\"i_l\":0}; pexels_auth=true; remember_user_token=eyJfcmFpbHMiOnsibWVzc2FnZSI6IlcxczBNamt4TkRrNU1qTmRMQ0lrTW1Fa01UQWtlVGRQV2twc1RsbHpkME55TkZseEx6UkZSRzUyWlNJc0lqRTNNalk1T0RJNU5UY3VOVGs1TkRnMElsMD0iLCJleHAiOiIyMDI1LTA5LTIyVDA1OjI5OjE3LjU5OVoiLCJwdXIiOiJjb29raWUucmVtZW1iZXJfdXNlcl90b2tlbiJ9fQ%3D%3D--257428be407f14eb4a427c9fc9d5600454a6531a; authHeader=Bearer 429149923_G_tLXy8ypVFThKceT43RUw; ab.storage.sessionId.5791d6db-4410-4ace-8814-12c903a548ba=%7B%22g%22%3A%22a6f0d8ef-8c49-9cfd-9f15-956be2611fe2%22%2C%22e%22%3A1726984834338%2C%22c%22%3A1726982437036%2C%22l%22%3A1726983034338%7D; OptanonConsent=isGpcEnabled=0&datestamp=Sun+Sep+22+2024+15%3A42%3A57+GMT%2B1000+(Australian+Eastern+Standard+Time)&version=202301.1.0&isIABGlobal=false&hosts=&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A0&AwaitingReconsent=false; cf_clearance=o_N.oFWks6CT2mugrjegWKT4gGOAAYljewJRvI0wp_k-1726983777-1.2.1.1-1y7YBKv9EtRSm_UF6frb8O2mjddKT_FUapQPvaEWsrcoUB1CDMnCEJfv0yJwAmosa0ZQv71bz6uIyvDJOmxNTNkvP6KsRWf1OSZ.s99ETMkQ8D3.Fq0QQU7JzHhpnpa7bj92SyVOyaZpMTJ_VclhKUS_7t0cOrni.1tsXMyUKwN3Ub_85N9l2D7kBpWhIUBXDvX0QN5qqyGUvcE2Xhp23m4JnsZ76h9fr7Pzeph6sVoN11FTQmc8OlSYjcxDuDv7zkPJsf24aUP9pOkUio.oR4i2.3jVaoJshxSmOCMyGRZWMYKgnxZafE6cnB1vz6jVI8l23Hq_AlnXri78s7BgaWXUSIMDJ9Mcac_IWnKbRMzhwyUYOsK5c6xjtcIAUXKpPmiHleRNG6.ODdSo5Fi1PQ; country-code-v2=AU; _sp_id.9ec1=d5ec39f7-a9b6-4e92-946c-cf902d2b1597.1717750128.4.1726983841.1725658644.f9828085-95c3-49cf-a4d0-1a6ebf6f0bfa.3eef8bad-6446-4263-9e54-6f2492a21744.3cf50fad-b2ce-49a7-973e-08734f0ac6a9.1726981805312.27; _pexels_session=i6K6IvnTYCAhkSt4dS3XnWp%2B%2FEXPC9%2Bsqxh7uCoagL0gPVzYh5cT3QfDsxSBm9SSoq0%2Fj%2FDpQHYBdBIxew3Z3EP7Fu%2FCC0rKssYV%2BVelbyKQ9QEzYBaCOY%2FFEvP03Fr9ROwFECJ5xa4Y%2BidftneHRVrd%2BcWF7XjoeGiyn0S%2BTYiTCnkegiq42rzovOkn5Bza1FGO%2FdWNqHi88k58ItGZtKf65bIIAzDxJ5lgteYp0N5Aea40a4KrnXBgllgS6KYBt98NBkEgHlpO4R4tdNTu8uzVdpoc3R%2Fy3sNrjT1KBiva3dMkj9CxbbCBRCk2KQPIX3l7VAet1S%2FripdRlBRiJXH218jxS50qp%2FMXynMuQ2jUazYo8Xf2sP%2FKLKNOut%2F9nDXB1Z3XLIAClWhAg2MHzzE6bpuDfdSvxbYuEM1rmKLrnjhhKcFdhqFSupv7gp0MFuDoupNA4QnEPTz7gA9Pl%2FSYSPvQWowp3pnqFgIcpN5yKYXtqz8mqKPcEDuasQtHAW%2FMi9FZNnzUu%2BE47YoiG3dYGdu55um%2FyfT66TbK6g%3D%3D--oZl0d6HQ2Mr8MjAt--cHg75RYkkXRW3ChylIdpBw%3D%3D',",
-        "detail": "download",
-        "documentation": {}
-    },
-    {
-        "label": "PEXELS_PHOTO_URL",
-        "kind": 5,
-        "importPath": "download",
-        "description": "download",
-        "peekOfCode": "PEXELS_PHOTO_URL = \"https://api.pexels.com/v1/search\"\nconsole = Console()\ndef download_image(url: str, filepath: str) -> None:\n    response = requests.get(url, headers = {\n            'accept': '*/*',\n            'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',\n            'authorization': 'Bearer 429149923_G_tLXy8ypVFThKceT43RUw',\n            'content-type': 'application/json',\n            'cookie': '_cfuvid=urqgYlcW8RFToETijuS5OOG1KfJXuoV9IsFuQkubX6Y-1726981804758-0.0.1.1-604800000; active_experiment={\"id\":\"getty_big_ad\",\"variant\":{\"id\":\"fixed_height_grid_with_ad\"}}; _sp_ses.9ec1=*; ab.storage.deviceId.5791d6db-4410-4ace-8814-12c903a548ba=%7B%22g%22%3A%22cafff100-d05e-2b24-2408-587dd2d6204d%22%2C%22c%22%3A1717750013170%2C%22l%22%3A1726982437036%7D; locale=en-US; NEXT_LOCALE=en-US; __cf_bm=A53zu5ExO5XZ1zZakrPtz1f0sq1UJgqYpMtTrAlrorA-1726982946-1.0.1.1-H61U5aBneDeHgHCa76Q7CIMDAi67gjKD3riOlAQk7eeOVX3pCTYEp13sSh3vxugBjh7jyBerigtBOljwiyAPOQ; google-one-tap-skip-prompt=true; g_state={\"i_l\":0}; pexels_auth=true; remember_user_token=eyJfcmFpbHMiOnsibWVzc2FnZSI6IlcxczBNamt4TkRrNU1qTmRMQ0lrTW1Fa01UQWtlVGRQV2twc1RsbHpkME55TkZseEx6UkZSRzUyWlNJc0lqRTNNalk1T0RJNU5UY3VOVGs1TkRnMElsMD0iLCJleHAiOiIyMDI1LTA5LTIyVDA1OjI5OjE3LjU5OVoiLCJwdXIiOiJjb29raWUucmVtZW1iZXJfdXNlcl90b2tlbiJ9fQ%3D%3D--257428be407f14eb4a427c9fc9d5600454a6531a; authHeader=Bearer 429149923_G_tLXy8ypVFThKceT43RUw; ab.storage.sessionId.5791d6db-4410-4ace-8814-12c903a548ba=%7B%22g%22%3A%22a6f0d8ef-8c49-9cfd-9f15-956be2611fe2%22%2C%22e%22%3A1726984834338%2C%22c%22%3A1726982437036%2C%22l%22%3A1726983034338%7D; OptanonConsent=isGpcEnabled=0&datestamp=Sun+Sep+22+2024+15%3A42%3A57+GMT%2B1000+(Australian+Eastern+Standard+Time)&version=202301.1.0&isIABGlobal=false&hosts=&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A0&AwaitingReconsent=false; cf_clearance=o_N.oFWks6CT2mugrjegWKT4gGOAAYljewJRvI0wp_k-1726983777-1.2.1.1-1y7YBKv9EtRSm_UF6frb8O2mjddKT_FUapQPvaEWsrcoUB1CDMnCEJfv0yJwAmosa0ZQv71bz6uIyvDJOmxNTNkvP6KsRWf1OSZ.s99ETMkQ8D3.Fq0QQU7JzHhpnpa7bj92SyVOyaZpMTJ_VclhKUS_7t0cOrni.1tsXMyUKwN3Ub_85N9l2D7kBpWhIUBXDvX0QN5qqyGUvcE2Xhp23m4JnsZ76h9fr7Pzeph6sVoN11FTQmc8OlSYjcxDuDv7zkPJsf24aUP9pOkUio.oR4i2.3jVaoJshxSmOCMyGRZWMYKgnxZafE6cnB1vz6jVI8l23Hq_AlnXri78s7BgaWXUSIMDJ9Mcac_IWnKbRMzhwyUYOsK5c6xjtcIAUXKpPmiHleRNG6.ODdSo5Fi1PQ; country-code-v2=AU; _sp_id.9ec1=d5ec39f7-a9b6-4e92-946c-cf902d2b1597.1717750128.4.1726983841.1725658644.f9828085-95c3-49cf-a4d0-1a6ebf6f0bfa.3eef8bad-6446-4263-9e54-6f2492a21744.3cf50fad-b2ce-49a7-973e-08734f0ac6a9.1726981805312.27; _pexels_session=i6K6IvnTYCAhkSt4dS3XnWp%2B%2FEXPC9%2Bsqxh7uCoagL0gPVzYh5cT3QfDsxSBm9SSoq0%2Fj%2FDpQHYBdBIxew3Z3EP7Fu%2FCC0rKssYV%2BVelbyKQ9QEzYBaCOY%2FFEvP03Fr9ROwFECJ5xa4Y%2BidftneHRVrd%2BcWF7XjoeGiyn0S%2BTYiTCnkegiq42rzovOkn5Bza1FGO%2FdWNqHi88k58ItGZtKf65bIIAzDxJ5lgteYp0N5Aea40a4KrnXBgllgS6KYBt98NBkEgHlpO4R4tdNTu8uzVdpoc3R%2Fy3sNrjT1KBiva3dMkj9CxbbCBRCk2KQPIX3l7VAet1S%2FripdRlBRiJXH218jxS50qp%2FMXynMuQ2jUazYo8Xf2sP%2FKLKNOut%2F9nDXB1Z3XLIAClWhAg2MHzzE6bpuDfdSvxbYuEM1rmKLrnjhhKcFdhqFSupv7gp0MFuDoupNA4QnEPTz7gA9Pl%2FSYSPvQWowp3pnqFgIcpN5yKYXtqz8mqKPcEDuasQtHAW%2FMi9FZNnzUu%2BE47YoiG3dYGdu55um%2FyfT66TbK6g%3D%3D--oZl0d6HQ2Mr8MjAt--cHg75RYkkXRW3ChylIdpBw%3D%3D',\n            'dnt': '1',",
-        "detail": "download",
-        "documentation": {}
-    },
-    {
-        "label": "console",
-        "kind": 5,
-        "importPath": "download",
-        "description": "download",
-        "peekOfCode": "console = Console()\ndef download_image(url: str, filepath: str) -> None:\n    response = requests.get(url, headers = {\n            'accept': '*/*',\n            'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',\n            'authorization': 'Bearer 429149923_G_tLXy8ypVFThKceT43RUw',\n            'content-type': 'application/json',\n            'cookie': '_cfuvid=urqgYlcW8RFToETijuS5OOG1KfJXuoV9IsFuQkubX6Y-1726981804758-0.0.1.1-604800000; active_experiment={\"id\":\"getty_big_ad\",\"variant\":{\"id\":\"fixed_height_grid_with_ad\"}}; _sp_ses.9ec1=*; ab.storage.deviceId.5791d6db-4410-4ace-8814-12c903a548ba=%7B%22g%22%3A%22cafff100-d05e-2b24-2408-587dd2d6204d%22%2C%22c%22%3A1717750013170%2C%22l%22%3A1726982437036%7D; locale=en-US; NEXT_LOCALE=en-US; __cf_bm=A53zu5ExO5XZ1zZakrPtz1f0sq1UJgqYpMtTrAlrorA-1726982946-1.0.1.1-H61U5aBneDeHgHCa76Q7CIMDAi67gjKD3riOlAQk7eeOVX3pCTYEp13sSh3vxugBjh7jyBerigtBOljwiyAPOQ; google-one-tap-skip-prompt=true; g_state={\"i_l\":0}; pexels_auth=true; remember_user_token=eyJfcmFpbHMiOnsibWVzc2FnZSI6IlcxczBNamt4TkRrNU1qTmRMQ0lrTW1Fa01UQWtlVGRQV2twc1RsbHpkME55TkZseEx6UkZSRzUyWlNJc0lqRTNNalk1T0RJNU5UY3VOVGs1TkRnMElsMD0iLCJleHAiOiIyMDI1LTA5LTIyVDA1OjI5OjE3LjU5OVoiLCJwdXIiOiJjb29raWUucmVtZW1iZXJfdXNlcl90b2tlbiJ9fQ%3D%3D--257428be407f14eb4a427c9fc9d5600454a6531a; authHeader=Bearer 429149923_G_tLXy8ypVFThKceT43RUw; ab.storage.sessionId.5791d6db-4410-4ace-8814-12c903a548ba=%7B%22g%22%3A%22a6f0d8ef-8c49-9cfd-9f15-956be2611fe2%22%2C%22e%22%3A1726984834338%2C%22c%22%3A1726982437036%2C%22l%22%3A1726983034338%7D; OptanonConsent=isGpcEnabled=0&datestamp=Sun+Sep+22+2024+15%3A42%3A57+GMT%2B1000+(Australian+Eastern+Standard+Time)&version=202301.1.0&isIABGlobal=false&hosts=&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A0&AwaitingReconsent=false; cf_clearance=o_N.oFWks6CT2mugrjegWKT4gGOAAYljewJRvI0wp_k-1726983777-1.2.1.1-1y7YBKv9EtRSm_UF6frb8O2mjddKT_FUapQPvaEWsrcoUB1CDMnCEJfv0yJwAmosa0ZQv71bz6uIyvDJOmxNTNkvP6KsRWf1OSZ.s99ETMkQ8D3.Fq0QQU7JzHhpnpa7bj92SyVOyaZpMTJ_VclhKUS_7t0cOrni.1tsXMyUKwN3Ub_85N9l2D7kBpWhIUBXDvX0QN5qqyGUvcE2Xhp23m4JnsZ76h9fr7Pzeph6sVoN11FTQmc8OlSYjcxDuDv7zkPJsf24aUP9pOkUio.oR4i2.3jVaoJshxSmOCMyGRZWMYKgnxZafE6cnB1vz6jVI8l23Hq_AlnXri78s7BgaWXUSIMDJ9Mcac_IWnKbRMzhwyUYOsK5c6xjtcIAUXKpPmiHleRNG6.ODdSo5Fi1PQ; country-code-v2=AU; _sp_id.9ec1=d5ec39f7-a9b6-4e92-946c-cf902d2b1597.1717750128.4.1726983841.1725658644.f9828085-95c3-49cf-a4d0-1a6ebf6f0bfa.3eef8bad-6446-4263-9e54-6f2492a21744.3cf50fad-b2ce-49a7-973e-08734f0ac6a9.1726981805312.27; _pexels_session=i6K6IvnTYCAhkSt4dS3XnWp%2B%2FEXPC9%2Bsqxh7uCoagL0gPVzYh5cT3QfDsxSBm9SSoq0%2Fj%2FDpQHYBdBIxew3Z3EP7Fu%2FCC0rKssYV%2BVelbyKQ9QEzYBaCOY%2FFEvP03Fr9ROwFECJ5xa4Y%2BidftneHRVrd%2BcWF7XjoeGiyn0S%2BTYiTCnkegiq42rzovOkn5Bza1FGO%2FdWNqHi88k58ItGZtKf65bIIAzDxJ5lgteYp0N5Aea40a4KrnXBgllgS6KYBt98NBkEgHlpO4R4tdNTu8uzVdpoc3R%2Fy3sNrjT1KBiva3dMkj9CxbbCBRCk2KQPIX3l7VAet1S%2FripdRlBRiJXH218jxS50qp%2FMXynMuQ2jUazYo8Xf2sP%2FKLKNOut%2F9nDXB1Z3XLIAClWhAg2MHzzE6bpuDfdSvxbYuEM1rmKLrnjhhKcFdhqFSupv7gp0MFuDoupNA4QnEPTz7gA9Pl%2FSYSPvQWowp3pnqFgIcpN5yKYXtqz8mqKPcEDuasQtHAW%2FMi9FZNnzUu%2BE47YoiG3dYGdu55um%2FyfT66TbK6g%3D%3D--oZl0d6HQ2Mr8MjAt--cHg75RYkkXRW3ChylIdpBw%3D%3D',\n            'dnt': '1',\n            'priority': 'u=1, i',",
-        "detail": "download",
         "documentation": {}
     },
     {
