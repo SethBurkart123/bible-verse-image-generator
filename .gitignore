@@ -1,5 +1,10 @@
 backgrounds/*
 output/*
 processed_backgrounds/*
+images/downloaded-images.json
+images/node_modules
+images/bun.lockb
+images/package-lock.json
+images/backgrounds/*
 
 .env
