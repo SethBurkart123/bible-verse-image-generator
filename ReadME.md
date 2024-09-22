@@ -1,4 +1,4 @@
-# Bible Instagram Post Generator: User Guide
+# Bible Instagram Post Generator
 
 ## Introduction
 
