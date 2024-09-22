@@ -1,5 +1,10 @@
 # Bible Instagram Post Generator
 
+<p align="center">
+  <img src="sample_image_1.jpg" width="45%" alt="Sample Image 1">
+  <img src="sample_image_2.jpg" width="45%" alt="Sample Image 2">
+</p>
+
 ## Introduction
 
 The Bible Instagram Post Generator is a web application that allows users to create visually appealing images with Bible verses for sharing on social media platforms like Instagram. This guide will walk you through the setup process and how to use the application.
@@ -112,7 +117,3 @@ This script takes a list of verse references from `verses/verse_references.txt` 
 2. Ensure that the `backgrounds` and `output` directories exist and have the correct permissions.
 
 3. If fonts are not loading, verify that your Google Fonts API key is correct in the `.env` file.
-
-## Conclusion
-
-The Bible Instagram Post Generator provides a powerful and flexible way to create inspiring images with Bible verses. By following this guide, you should be able to set up and use the application effectively. Feel free to customize and extend the functionality to suit your specific needs.
