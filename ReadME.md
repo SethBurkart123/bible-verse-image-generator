@@ -1,5 +1,3 @@
-Certainly! I'll create a comprehensive guide based on the repository you've provided. Here's a full guide for the Bible Instagram Post Generator:
-
 # Bible Instagram Post Generator: User Guide
 
 ## Introduction
